@@ -19,17 +19,11 @@ https://chat.whatsapp.com/FYPYqeucaxr4qwME8G6Tot
 
 🔠 📲💻ANDROID WORLD🎬🎮
 https://chat.whatsapp.com/FYPYqeucaxr4qwME8G6Tot
-
-◈ ━━━━━━━━━━━━━━━━━━━━ ◈
-▢ Todos los Grupos
- https://instabio.cc
-
-▢ *Telegram*
-• https://t.me/
- ▢ *PayPal*
-• https://paypal.me
-▢ *YouTube*
-• https://www.youtube.com`)
+⦁⦁⚋⚋❲ *All support ❳⚋⚋⦁⦁
+❉ M.R HANSAMALA ❲Queen-Nethu-Bot ❳
+❉ M.R KIND ALFA ❲❳
+❉ M.R SADARU ❲Logo and voice❳
+❉ M.R DARKWINZO ❲QUEEN-MD_bot❳`)
 
 }
 handler.help = ['support']
