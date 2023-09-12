@@ -11,10 +11,10 @@ let handler = async (m, { conn, text, usedPrefix, command, args, participants, i
   let [_, code] = text.match(linkRegex) || []
   if (!args[0]) throw `🔱 please Enter the group Link\n\n ⚡ Example:\n *${usedPrefix + command}* <linkwa> <dias>\n\n https://chat.whatsapp.com/FYPYqeucaxr4qwME8G6Tot` 
   if (!code) throw `✳️ Link inválido`
-  if (!args[1]) throw `📌 Falta el número de días\n\n Ejemplo:\n *${usedPrefix + command}* <linkwa> 2`
-  if (isNaN(args[1])) throw `✳️ Solo número, que representa los días que el bot estará en el grupo!`
+  if (!args[1]) throw `🔱 please Type To \n\n Example \n *${usedPrefix + command}* <linkwa> 2`
+  if (isNaN(args[1])) throw `❌ Cant join.....`
   let owbot = global.owner[1] 
-  m.reply(`😎 Espere 3 segundos, me uniré al grupo`)
+  m.reply(`😎3 ALL GROUP LIMIT `)
   await delay(3000)
   try {
   let res = await conn.groupAcceptInvite(code)
@@ -26,11 +26,11 @@ let handler = async (m, { conn, text, usedPrefix, command, args, participants, i
   let now = new Date() * 1
   if (now < global.db.data.chats[res].expired) global.db.data.chats[res].expired += nDays
   else global.db.data.chats[res].expired = now + nDays
-  if (e.length) await m.reply(`✅ Me uni correctamente al grupo \n\n≡ Info del grupo \n\n *Nombre :* ${await conn.getName(res)}\n\nEl bot saldrá automáticamente después de \n\n${msToDate(global.db.data.chats[res].expired - now)}`)
+  if (e.length) await m.reply(`✅ Group \n\n❉ Info delete group \n\n *Numbre :* ${await conn.getName(res)}\n\nAuto whatsapp bot  \n\n${msToDate(global.db.data.chats[res].expired - now)}`)
  
- if (e.length) await conn.reply(res, `🏮 Hola shavales
+ if (e.length) await conn.reply(res, `🤜 Hello 
 
-@${owbot} es mi creador  si tiene alguna duda
+@${owbot} Contract owner 
 fui invitado por *${m.name}*`, m, {
     mentions: d
      }).then(async () => {
