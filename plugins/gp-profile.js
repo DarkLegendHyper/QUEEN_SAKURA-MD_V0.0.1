@@ -6,7 +6,7 @@ import { canLevelUp, xpRange } from '../lib/levelling.js'
 let handler = async (m, { conn, usedPrefix, command}) => {
 
 let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-if (!(who in global.db.data.users)) throw `✳️ El usuario no se encuentra en mi base de datos`
+if (!(who in global.db.data.users)) throw `Enter the user`
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './src/avatar_contact.png')
 let user = global.db.data.users[who]
 let { name, exp, diamond, lastclaim, registered, regTime, age, level, role, warn } = global.db.data.users[who]
@@ -17,8 +17,9 @@ let prem = global.prems.includes(who.split`@`[0])
 let sn = createHash('md5').update(who).digest('hex')
 
 let str = `
-┏⚋⚋⚋⚋⚋⚋❬ *PROFILE* ❭⚋⚋⚋⚋⚋❍
-┗⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋❍
+┏⚋⚋⚋⚋⚋⚋❬ *PROFILE* ❭⚋⚋⚋⚋⚋❉⦁⦁
+┗⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⦁❉⦁
+⦁⦁⚋⚋⚋❲ *𝑄𝑈𝛯𝛯𝛮-𝑆𝛥𝛫𝑈𝑅𝛥_𝛭𝐷* ❳⚋⚋⚋⦁❉⦁
 ☛ *🔖 USERS:* 
    🎀 ${username} ${registered ? '\n   • ' + name + ' ': ''}
    🎀 @${who.replace(/@.+/, '')}
@@ -31,8 +32,8 @@ let str = `
 ☛ *🧬 RANK :* ${role}
 ☛ *📇 REGISTER :* ${registered ? 'Si': 'No'}
 ☛ *⭐ Premium* : ${prem ? 'Si' : 'No'}
-❍⚋⚋⚋❬ 𝗕𝗬 𝗤𝗨𝗘𝗘𝗡-𝗦𝗔𝗞𝗨𝗥𝗔 ❭⚋⚋⚋❍
-┗⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋❍`
+❍⚋⚋⚋❬ 𝗕𝗬 𝗤𝗨𝗘𝗘𝗡-𝗦𝗔𝗞𝗨𝗥𝗔 ❭⚋⚋⚋⦁❉⦁
+┗⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋❉⦁⦁`
     conn.sendFile(m.chat, pp, 'perfil.jpg', str, m, false, { mentions: [who] })
     m.react(done)
 
