@@ -7,10 +7,12 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
    try {
     let result = await fg.fbdl(args[0]);
     let tex = `
-┏━━❍┃ *FB-DOWNLOADER*┃━━❍
-┣❍📝 *Tile:* ${result.title}
-┣❍🎭 *BY QUEEN-SAKURA*
-└───────────❍`;
+┏⚋⚋⚋⚋❲ *FB-DOWNLOADER* ❳⚋⚋⦁
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+⦁ 📝 *Tile:* ${result.title}
+⦁ 🎭 *BY QUEEN-SAKURA*
+⚋⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+└───────────⦁⦁`;
     conn.sendFile(m.chat, result.videoUrl, 'fb.mp4', tex, m);
     m.react(done);
   } catch (error) {
