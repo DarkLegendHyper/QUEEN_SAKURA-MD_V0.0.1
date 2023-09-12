@@ -7,33 +7,38 @@ let handler = async (m, { conn, participants, groupMetadata }) => {
     const listAdmin = groupAdmins.map((v, i) => `${i + 1}. @${v.id.split('@')[0]}`).join('\n')
     const owner = groupMetadata.owner || groupAdmins.find(p => p.admin === 'superadmin')?.id || m.chat.split`-`[0] + '@s.whatsapp.net'
     let text = `
-┌⚋⚋⚋「 *GROUP-INFORM* 」⚋⚋⚋❍
-┗⚋⚋⚋⚋⚋⚋⚋⚋❍
-👸 ❍ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ-ᴍᴅ
-👩‍💻 *🔖GROUP-ID:*
-   • ${groupMetadata.id}
-🍃 *🏷️NUMBER* : 
-• ${groupMetadata.subject}
-🪀 *👥MEMBERS* :
-• ${participants.length}
-🔱 *🤿Owner the group:*
-• @${owner.split('@')[0]}
-👸 *🕵🏻‍♂️Admins:*
- ${listAdmin}
-⚡ *🔖 group configuration:*
+┌⚋⚋⚋「 *GROUP-INFORM* 」⚋⚋⚋⦁❉⦁
+┗⚋⚋⚋⚋⚋⚋⚋⚋⦁❉⦁
+⦁⦁⚋⚋❲ *𝑄𝑈𝛯𝛯𝛮-𝑆𝛥𝛫𝑈𝑅𝛥_𝛭𝐷* ❳⚋⚋⦁❉⦁
+❉⚋⚋⚋❲👩‍💻 *🔖GROUP-ID:* ❳⚋⚋⚋⦁⦁
+•❉➠ ${groupMetadata.id}
+   
+❉⚋⚋⚋❲🍃 *🏷️NUMBER* ❳⚋⚋⚋⦁⦁
+•❉➠ ${groupMetadata.subject}
+
+❉⚋⚋⚋❲🪀 *👥MEMBERS* ❳⚋⚋⚋⦁⦁
+•❉➠ ${participants.length}
+
+❉⚋⚋❲🔱 *🤿Owner the group:* ❳⚋⚋⦁⦁
+•❉➠ @${owner.split('@')[0]}
+
+❉⚋⚋⚋❲👸 *🕵🏻‍♂️Admins:* ❳⚋⚋⚋⦁⦁
+⦁❉➠ ${listAdmin}
+
+❉⦁⦁⦁⦁⦁⦁⦁❲ *🔖 group configuration:* ❳⦁⦁⦁⦁⦁⦁⦁❉
 🔱 ${isBanned ? '✅' : '❎'} *Banned*
 🔱 ${welcome ? '✅' : '❎'} *Welcome*
 🔱 ${detect ? '✅' : '❎'} *Detector*
 🔱 ${del ? '❎' : '✅'} *Anti Delete*
 🔱 ${antiLink ? '✅' : '❎'} *Anti Link WhatsApp*
 
-*🔖 message settings:*
+❉⦁⦁⦁⦁⦁❲ *🔖 message settings:* ❳⦁⦁⦁⦁⦁❉
 🎀 Welcome: ${sWelcome}
 🎀  Farewell:group configuration ${sBye}
 🎀 Promoted: ${sPromote}
 🎀 Demote: ${sDemote}
 
-⚡ *📌Descripción* :
+❉⦁⦁⦁⦁⦁❲ *🔱Descripción* ❳⦁⦁⦁⦁⦁❉
    🧬 ${groupMetadata.desc?.toString() || 'a stranger'}
 `.trim()
     conn.sendFile(m.chat, pp, 'pp.jpg', text, m, false, { mentions: [...groupAdmins.map(v => v.id), owner] })
