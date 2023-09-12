@@ -1,39 +1,66 @@
+let limit = 80
+let fetch = require('node-fetch')
+const { youtubeSearch, youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
+let handler = async (m, { conn, args, isPrems, isOwner }) => {
+  if (!args || !args[0]) throw 'Enter the link'
+  let chat = global.db.data.chats[m.chat]
+  const isY = /y(es)/gi.test(args[1])
+  const { thumbnail, video: _video, title} = await youtubedlv2(args[0]).catch(async _ => await youtubedl(args[0])).catch(async _ => await youtubedlv3(args[0]))
+  const limitedSize = (isPrems || isOwner ? 99 : limit) * 1024
+  let video, source, res, link, lastError, isLimit
+  for (let i in _video) {
+    try {
+      video = _video[i]
+      isLimit = limitedSize < video.fileSize
+      if (isLimit) continue
+      link = await video.download()
+      if (link) res = await fetch(link)
+      isLimit = res?.headers.get('content-length') && parseInt(res.headers.get('content-length')) < limitedSize
+      if (isLimit) continue
+      if (res) source = await res.arrayBuffer()
+      if (source instanceof ArrayBuffer) break
+    } catch (e) {
+      video = source = link = null
+      lastError = e
+    }
+  }
+  if ((!(source instanceof ArrayBuffer) || !link || !res.ok) && !isLimit) throw 'Error: ' + (lastError || 'Can\'t download video')
+  if (!isY && !isLimit) await conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', `
+┏┉┉┉┉❬ *YOUTUBE* ❭┉┉┉┉┉⦁
+┗⚋⚋⚋⚋⚋⚋⚋⦁
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+⦁📝 *Title:* ${title}
+⦁🌿 *Quality:* 360p
+⦁⚖️ *Filesize:* ${video.fileSizeH}
+ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ-ᴍᴅ©
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+`.trim(), m)
+  let _thumb = {}
+  try { _thumb = { thumbnail: await (await fetch(thumbnail)).buffer() } }
+  catch (e) { }
+  if (!isLimit) await conn.sendFile(m.chat, link, title + '.mp4', `
+┏┉┉┉❬ *YOUTUBE* ❭┉┉┉┉⦁
+┗⚋⚋⚋⚋⚋⚋⦁⦁⦁
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+⦁ *📝ᴛɪᴛʟᴇ:* ${title}
+⦁ *🌿ᴛʏᴘᴇ:* ᴍᴘ3/ᴀᴜᴅɪᴏ
+⦁ *⚖️ꜰɪʟᴇꜱɪᴢᴇ:* ${audio.fileSizeH}
 
-import fg from 'api-dylux'
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-let limit = 350 
-let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) => {
-	if (!args || !args[0]) throw `🔖 Example :\n${usedPrefix + command} https://youtu.be/YzkTFFwxtXI`
-    if (!args[0].match(/youtu/gi)) throw `❎ Verifica que el link de YouTube`
-	 let chat = global.db.data.chats[m.chat]
-	 m.react(rwait) 
-	try {
-		let q = args[1] || '360p'
-		let v = args[0]
-		const yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
-		const dl_url = await yt.video[q].download()
-		const title = await yt.title
-		const size = await yt.video[q].fileSizeH 
-		
-       if (size.split('MB')[0] >= limit) return m.reply(` ≡  *Sakura-Yt*\n\n▢ *⚖️Peso* : ${size}\n▢ *🎞️Calidad* : ${q}\n\n▢ _El archivo supera el límite de descarga_ *+${limit} MB*`)    
-	  conn.sendFile(m.chat, dl_url, title + '.mp4', `
- 👸 *Sakura-Yt* 👸
-  
-❍ *🎀Tile* : ${title}
-❍ *📟 Ext* : mp4
-❍ *🎞️Calidad* : ${q}
-❍ *⚖️Size* : ${size}
-`.trim(), m, false, { asvideo: chat.usevideo })
-		m.react(done) 
-		
-	} catch {	
-       m.reply(`✳️ Error.....`) 
-	} 
-		 
+*⏳L O A D I N G. . .*
+ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ-ᴍᴅ ©
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+`.trim(), m, false, {
+    ..._thumb,
+    asDocument: chat.useDocument
+  })
 }
-handler.help = ['ytmp4 <link yt>']
-handler.tags = ['dl'] 
-handler.command = ['ytmp4', 'ytmp4']
-handler.diamond = true
+handler.help = ['video', 'v', ''].map(v => 'yt' + v + ` <url> <without message>`)
+handler.tags = ['downloader', 'limitmenu']
+handler.command = /^yt(v|mp4)?$/i
 
-export default handler
+handler.exp = 0
+handler.register = false
+handler.limit = true
+
+
+module.exports = handler
