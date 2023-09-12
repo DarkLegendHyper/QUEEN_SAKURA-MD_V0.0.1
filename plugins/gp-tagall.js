@@ -1,6 +1,6 @@
 let handler = async (m, { conn, text, participants, isAdmin, isOwner, groupMetadata }) => {
     let users = participants.map(u => u.id).filter(v => v !== conn.user.jid)
-    m.reply(`🎀 *GROUP* : *${groupMetadata.subject}*\n🔱 *Member* : *${participants.length}*${text ? `\n🔖 Mensaje : ${text}\n` : ''}\n┌───⊷ *TAG-ALL*\n` + users.map(v => '┣❍ @' + v.replace(/@.+/, '')).join`\n` + '\n└──✪ 👸 *QUEEN-SAKURA*', null, {
+    m.reply(`🎀 *GROUP* : *${groupMetadata.subject}*\n🔱 *Members* : *${participants.length}*${text ? `\n🔖 Massage : ${text}\n` : ''}\n┌⚋⚋⚋❉⦁❲ *TAG BY 𝑄𝑈𝛯𝛯𝛮-𝑆𝛥𝛫𝑈𝑅𝛥_𝛭𝐷*\n` + users.map(v => '*❲⦁❳* 🏷️ @' + v.replace(/@.+/, '')).join`\n` + '\n└⚋⚋⚋⦁❉👸 *QUEEN-SAKURA*', null, {
         mentions: users
     })
 }
