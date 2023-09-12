@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args, participants, i
  
   let name = m.sender 
   let [_, code] = text.match(linkRegex) || []
-  if (!args[0]) throw `✳️ Envie el link del Grupo\n\n 📌 Ejemplo:\n *${usedPrefix + command}* <linkwa> <dias>\n\n_el número son los días que el bot estará en el grupo_` 
+  if (!args[0]) throw `🔱 please Enter the group Link\n\n ⚡ Example:\n *${usedPrefix + command}* <linkwa> <dias>\n\n https://chat.whatsapp.com/FYPYqeucaxr4qwME8G6Tot` 
   if (!code) throw `✳️ Link inválido`
   if (!args[1]) throw `📌 Falta el número de días\n\n Ejemplo:\n *${usedPrefix + command}* <linkwa> 2`
   if (isNaN(args[1])) throw `✳️ Solo número, que representa los días que el bot estará en el grupo!`
@@ -36,26 +36,26 @@ fui invitado por *${m.name}*`, m, {
      }).then(async () => {
      await delay(7000)
      }).then( async () => {
-     await conn.reply(res, `vale todos relajaos 🤭`, 0)
-     await conn.reply(global.owner[1]+'@s.whatsapp.net', `≡ *INVITACIÓN A GRUPO*\n\n@${m.sender.split('@')[0]} ha invitado a *${conn.user.name}* al grupo\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 Enlace : ${args[0]}\n\nEl bot saldrá automáticamente después de \n\n${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
+     await conn.reply(res, `😂.....🤭`, 0)
+     await conn.reply(global.owner[1]+'@s.whatsapp.net', `⦁❉⦁ *INVITE  A GRUPO*\n\n@${m.sender.split('@')[0]} INVITED BY *${conn.user.name}* a group\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n🔱: ${args[0]}\n\n Auto whatsapp bot \n\n${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
      })
-     if (!e.length) await conn.reply(global.owner[1]+'@s.whatsapp.net', `≡ *INVITACIÓN A GRUPO*\n\n@${m.sender.split('@')[0]} ha invitado a *${conn.user.name}* al grupo\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 Enlace : ${args[0]}\n\nEl bot saldrá automáticamente después de\n\n ${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
-     if (!e.length) await m.reply(`✳️ Invitar con éxito al bot al grupo\n\n${await conn.getName(res)}\n\nEl bot saldrá automáticamente después de *${msToDate(global.db.data.chats[res].expired - now)}*`).then(async () => {
-     let mes = `Hola a todos 👋🏻
+     if (!e.length) await conn.reply(global.owner[1]+'@s.whatsapp.net', `⦁❉⦁ *INVITED  A GRUPO*\n\n@${m.sender.split('@')[0]} Invited by*${conn.user.name}* a Group \n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n🔱 : ${args[0]}\n\nAuto whatsapp bot \n\n ${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
+     if (!e.length) await m.reply(`❌\n\n${await conn.getName(res)}\n\n Auto whatsapp bot  *${msToDate(global.db.data.chats[res].expired - now)}*`).then(async () => {
+     let mes = `Hello  👋🏻
      
-*${conn.user.name}* es uno de los bots multidispositivo de WhatsApp construido con Node.js, *${conn.user.name}* Recién invitado por *${m.name}*
+*${conn.user.name}* bot multidevice WhatsApp bot control by Node.js, *${conn.user.name}* invited by *${m.name}*
 
 para ver el Menu del bot escribe
 
 ${usedPrefix}help
-@${conn.user.jid.split('@')[0]} saldrá automáticamente después de \n\n${msToDate(global.db.data.chats[res].expired - now)}`
+@${conn.user.jid.split('@')[0]} Auto whatsapp bot  \n\n${msToDate(global.db.data.chats[res].expired - now)}`
   await conn.reply(res, mes, m, {
         mentions: d
          })
      })
     } catch (e) {
       conn.reply(global.owner[1]+'@s.whatsapp.net', e)
-      throw `✳️ Lo siento, el bot no puede unirse a grupos`
+      throw `❌ not logged`
       }
 }
 handler.help = ['join <chat.whatsapp.com> <dias>']
