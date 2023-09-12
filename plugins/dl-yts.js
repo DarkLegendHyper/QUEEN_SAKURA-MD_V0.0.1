@@ -8,20 +8,21 @@ let handler = async (m, {conn, text }) => {
   let teks = results.all.map(v => {
     switch (v.type) {
       case 'video': return `
-▢ ${v.title}
-▢ *Link* : ${v.url}
-▢ *Duración* : ${v.timestamp}
-▢ *Subido :* ${v.ago}
-▢ *Vistas:* ${v.views}
+⦁⦁⚋⚋⚋⚋❲ *QUEEN-SAKURA* ❳⚋⚋⦁⦁      
+⦁ ${v.title}
+⦁ *Link* : ${v.url}
+⦁ *Duration* : ${v.timestamp}
+⦁ *Uploaded* : ${v.ago}
+⦁ *Views* : ${v.views}
 
    `.trim()
       case 'canal': return `
-▢ *${v.name}* (${v.url})
-▢${v.subCountLabel} (${v.subCount}) Suscribirse
-▢ ${v.videoCount} videos
+⦁ *${v.name}* (${v.url})
+⦁${v.subCountLabel} (${v.subCount}) Suscribirse
+⦁ ${v.videoCount} videos
 `.trim()
     }
-  }).filter(v => v).join('\n\n________________________\n\n')
+  }).filter(v => v).join('\n\n⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⚋⦁⦁⦁\n\n')
   conn.sendFile(m.chat, tes[0].thumbnail, 'yts.jpeg', teks, m)
 }
 handler.help = ['ytsearch'] 
