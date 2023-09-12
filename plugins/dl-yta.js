@@ -1,32 +1,65 @@
+let limit = 80
+let fetch = require('node-fetch')
+const { youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
+let handler = async (m, { conn, args, isPrems, isOwner }) => {
+  if (!args || !args[0]) throw 'Enter the link'
+  let chat = global.db.data.chats[m.chat]
+  const isY = /y(es)/gi.test(args[1])
+  const { thumbnail, audio: _audio, title } = await youtubedlv2(args[0]).catch(async _ => await youtubedl(args[0])).catch(async _ => await youtubedlv3(args[0]))
+  const limitedSize = (isPrems || isOwner ? 99 : limit) * 1024
+  let audio, source, res, link, lastError, isLimit
+  for (let i in _audio) {
+    try {
+      audio = _audio[i]
+      isLimit = limitedSize < audio.fileSize
+      if (isLimit) continue
+      link = await audio.download()
+      if (link) res = await fetch(link)
+      isLimit = res?.headers.get('content-length') && parseInt(res.headers.get('content-length')) < limitedSize
+      if (isLimit) continue
+      if (res) source = await res.arrayBuffer()
+      if (source instanceof ArrayBuffer) break
+    } catch (e) {
+      audio = link = source = null
+      lastError = e
+    }
+  }
+  if ((!(source instanceof ArrayBuffer) || !link || !res.ok) && !isLimit) throw 'Error: ' + (lastError || 'Can\'t download audio')
+  if (!isY && !isLimit) await conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', `
+┏┉┉┉❬ *YOUTUBE* ❭┉┉┉┉⦁
+┗⚋⚋⚋⚋⚋⚋⦁⦁⦁
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+⦁ *📝ᴛɪᴛʟᴇ:* ${title}
+⦁ *🌿ᴛʏᴘᴇ:* ᴍᴘ3/ᴀᴜᴅɪᴏ
+⦁ *⚖️ꜰɪʟᴇꜱɪᴢᴇ:* ${audio.fileSizeH}
 
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper';
-let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
-  if (!args || !args[0]) throw `🔖 Example :\n${usedPrefix + command} https://youtu.be/S1--lhvwLsc`
-  if (!args[0].match(/youtu/gi)) throw `❎ Verifica que el link de YouTube`
-   m.react(rwait)
- let chat = global.db.data.chats[m.chat]
-  try {
-		let q = '128kbps'
-		let v = args[0]
-		const yt = await youtubedl(v).catch(async () => await youtubedlv2(v))
-		const dl_url = await yt.audio[q].download()
-		const title = await yt.title
-		const size = await yt.audio[q].fileSizeH
-		conn.sendFile(m.chat, dl_url, title + '.mp3', `
- 👸 *SAKURA-YT* 👸
-  
-❍ *🎀TILE* : ${title}
-❍ *⚖️SIZE* : ${size}
-`.trim(), m, false, { mimetype: 'audio/mpeg', asaudio : chat.useaudio  })
-		m.react(done)
-        } catch {
-			await m.reply(`❎ Error: no se pudo descargar el audio`)
-} 
+*⏳L O A D I N G. . .*
+ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ-ᴍᴅ ©
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+`.trim(), m) // title + '.mp3',
+  if (!isLimit) await conn.sendFile(m.chat, source, title + 'audio/mpeg', `
+┏┉┉┉❬ *YOUTUBE* ❭┉┉┉┉⦁
+┗⚋⚋⚋⚋⚋⚋⦁⦁⦁
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+⦁ *📝ᴛɪᴛʟᴇ:* ${title}
+⦁ *🌿ᴛʏᴘᴇ:* ᴍᴘ3/ᴀᴜᴅɪᴏ
+⦁ *⚖️ꜰɪʟᴇꜱɪᴢᴇ:* ${audio.fileSizeH}
 
-}
-handler.help = ['ytmp3 <url>']
-handler.tags = ['dl']
-handler.command = ['ytmp3', 'fgmp3'] 
-handler.diamond = true
+*⏳L O A D I N G. . .*
+ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ-ᴍᴅ ©
+⦁⦁☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷☷⦁⦁
+`.trim(), m, null, {
+    asaudio: chat.useaudio
+  })
+.trim(), m, null, {
+    asaDocument: chat.useDocument
+  })
+handler.help = ['song', 'play'].map(v => 'yt' + v + ` <url> <without message>`)
+handler.tags = ['downloader', 'limitmenu']
+handler.command = /^yt(a|mp3)$/i
 
-export default handler
+handler.exp = 0
+handler.register = false
+handler.limit = true
+
+module.exports = handler
