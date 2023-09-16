@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/blacksyberzizuko/QUEEN_SAKURA-MD_V0.0.1",
+    "homepage": "https://github.com/DarkLegendHyper/QUEEN_SAKURA-MD_V0.0.1/tree/main",
     "author": {
         "name": "DARK_LEGEND_HYPER"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/blacksyberzizuko/QUEEN_SAKURA-MD_V0.0.1.git"
+        "url": "git+https://github.com/DarkLegendHyper/QUEEN_SAKURA-MD_V0.0.1/tree/main.git"
     },
     "bugs": {
-        "url": "https://github.com/blacksyberzizuko/QUEEN_SAKURA-MD_V0.0.1/issues"
+        "url": "https://github.com/DarkLegendHyper/QUEEN_SAKURA-MD_V0.0.1/tree/main/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
