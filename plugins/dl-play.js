@@ -23,7 +23,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 ⦁ 📆 *Relise:* ${ago}
 ⦁ ⌚ *duration:* ${timestamp}
 ⦁ 👀 *views:* ${views}
-└──────────────⦁⦁`, author.trim(), await( await conn.getFile(thumbnail)).data, ['📽VIDEO', `${usedPrefix}getvid ${url} 360`], false, { quoted: m, 'document': { 'url':'https://wa.me/+94770378874' },
+└──────────────⦁⦁`, author.trim(), await( await conn.getFile(thumbnail)).data, ['📽VIDEO', `${usedPrefix}getvid ${url} 360`], false, { quoted: m, 'Video': { 'url':'https://wa.me/+94770378874' },
 'mimetype': global.dpdf,
 'fileName': `YouTube Play`,
 'fileLength': 666666666666666,
