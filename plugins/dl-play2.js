@@ -4,12 +4,12 @@ import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 let limit = 320
 let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
   
-    if (!text) throw `✳️ Enter a song title\n\n📌 Example *${usedPrefix + command}* *Baby Dont go Baby*`
+    if (!text) throw `👸 Enter a song title\n\n📌 Example *${usedPrefix + command}* *Baby Dont go Baby*`
   let chat = global.db.data.chats[m.chat]
   let res = await yts(text)
   //let vid = res.all.find(video => video.seconds < 3600)
   let vid = res.videos[0]
-  if (!vid) throw `✳️ Vídeo/Audio no found`
+  if (!vid) throw `👸 Vídeo/Audio no found`
   let isVideo = /vid$/.test(command)
   m.react('🎧') 
   
@@ -21,29 +21,27 @@ let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, comman
   let title = await yt.title
   let size = await (isVideo ? yt.video[q].fileSizeH : yt.audio[q].fileSizeH)
   let play = `
-┏━━━❍ *YT-MUSIC* ━━━❍
+┏─── 〔 Y O U T U B E 〕 ─⦁
 ┌──────────────
-┣❍ 📌 *Tile* : ${vid.title}
-┣❍ 📆 *Relise:* ${vid.ago}
-┣❍ ⌚ *Duration:* ${vid.timestamp}
-┣❍ 👀 *Views:* ${vid.views}
-┣──────────────❍
-\n┃©ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ
-┗━━━━━━━━━━━━━━❍
+⦁ 📌 *Tile* : ${title}
+⦁ 📆 *Relise:* ${ago}
+⦁ ⌚ *duration:* ${timestamp}
+⦁ 👀 *views:* ${views}
+└──────────────⦁⦁`
 *Downloading And Uploading Song*`
 conn.sendFile(m.chat, vid.thumbnail, 'song', play, m, null, rpig)
 
-if (size.split('MB')[0] >= limit) return m.reply(`*YT-DL*\n\n▢ *⚖️Size* : ${size}\n▢ *🎞️Calidad* : ${q}\n\n▢ _The file exceeds the download limit_ *+${limit} MB*`) 
-if (size.includes('GB')) return m.reply(`*YT-DL*\n\n▢ *⚖️Size* : ${size}\n▢ *🎞️Calidad* : ${q}\n\n▢ _File exceeds download limit_ *+${limit} MB*`)   
+if (size.split('MB')[0] >= limit) return m.reply(`*YT-DL*\n\n⦁ *⚖️Size* : ${size}\n⦁ *🎞️quality* : ${q}\n\n⦁ _The file exceeds the download limit_ *+${limit} MB*`) 
+if (size.includes('GB')) return m.reply(`*YT-DL*\n\n⦁ *⚖️Size* : ${size}\n⦁ *🎞️quality* : ${q}\n\n⦁ _File exceeds download limit_ *+${limit} MB*`)   
 	  conn.sendFile(m.chat, dl_url, title + '.mp' + (3 + /vid$/.test(command)), `
-┏━━━❍ *Sakura-Yt* ❍━━━
+┏─── 〔 Y O U T U B E 〕 ─⦁
 ┣❍ 
 ┣❍ *🎀Tile* : ${title}
-┣❍ *🎞️Calidad* : ${q}
+┣❍ *🎞️quality* : ${q}
 ┣❍ *⚖️Size* : ${size}
 ┣❍ ©ʙʏ Qᴜᴇᴇɴ-ꜱᴀᴋᴜʀᴀ
 ┗━━━━━━━❍
-`.trim(), m, false, { mimetype: isVideo ? '' : 'audio/mpeg', asDocument: chat.useDocument })
+`.trim(), m, false, { mimetype: isVideo ? '' : 'audio/mpeg', asaudio: chat.useaudio })
 		m.react(done) 
     } catch {
 		m.reply(`Error: 🥺`)
