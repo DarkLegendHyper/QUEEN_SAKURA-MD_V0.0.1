@@ -4,7 +4,7 @@ let handler = async (m, { conn}) => {
 let name = conn.getName(m.sender)
 let av = `./src/mp3/${pickRandom(["criss", "andrea"])}.mp3`
 
-conn.sendButton(m.chat, `Hola *${name}* \n \nNecesitas ayuda? \n`, fgig, null, [
+conn.sendButton(m.chat, `Hi *${name}* \n \n Nice to meet you.. \n`, fgig, null, [
       ['⦙☰ Menu', '/help'],
       ['⦙☰ Menu 2', '/menu2'],
       ['⌬ Grupos', '/gpdylux']
@@ -12,7 +12,7 @@ conn.sendButton(m.chat, `Hola *${name}* \n \nNecesitas ayuda? \n`, fgig, null, [
 conn.sendFile(m.chat, av, 'audio.mp3', null, m, true, { type: 'audioMessage', ptt: true })
 } 
 
-handler.customPrefix = /^(bot|dylux)$/i
+handler.customPrefix = /^(QueenSakura)$/i
 handler.command = new RegExp
 
 export default handler
