@@ -11,12 +11,12 @@ export async function before(m, { conn }) {
     user.role = global.rpg.role(user.level).name
     if (before !== user.level) {
         m.reply(`
-*▢ SUBISTE DE NIVEL*
+⦁⦁⦁●●❉❲ *UP TO LEVEL* ❳❉●●⦁⦁⦁
 
- *${before}* ‣  *${user.level}*
- Rango : *${user.role}*
- 
- _para desactivar escribe_
+ ❉● *BEFORE:* *${before}*
+ ❉● *AFTER:* *${user.level}*
+ ❉● *USER RANK:* *${user.role}*
+💃 *𝑄𝑈𝛯𝛯𝛮-𝑆𝛥𝛫𝑈𝑅𝛥_𝛭𝐷*
 _*/off autolevelup*_
 	`.trim())
     }
