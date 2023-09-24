@@ -13,11 +13,12 @@ let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, comman
 		const title = await yt.title
 		const size = await yt.audio[q].fileSizeH
 		conn.sendFile(m.chat, dl_url, title + '.mp3', `
-┏⚋⚋⚋⚋❲ *YOUTUBE* ❳⚋⚋⚋⦁
-┗⚋⚋⚋⚋⚋⚋⚋⦁⦁
+┏⦁⦁⦁⦁⦁●❉❲ *YOUTUBE* ❳❉●⦁⦁⦁⦁
+┗❉●●●●⦁⦁
 ⦁ *📝TITLE* : ${title}
 ⦁ *⚖️FILESIZE* : ${size}
-`.trim(), m, false, { mimetype: 'audio/mpeg', asDocument: chat.useDocument })
+💃B҈Y҈ Q҈U҈E҈E҈N҈-S҈A҈K҈U҈R҈A҈..
+`.trim(), m, false, { mimetype: 'audio/mpeg', asaudio: chat.useaudio })
 		m.react(done)
         } catch {
 			await m.reply(`❎ Error: .......`)
@@ -26,7 +27,7 @@ let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, comman
 }
 handler.help = ['ytmp3 <url>']
 handler.tags = ['dl']
-handler.command = ['ytmp3', 'fgmp3'] 
+handler.command = ['ytmp3', 'dlmp3'] 
 handler.diamond = true
 
 export default handler
