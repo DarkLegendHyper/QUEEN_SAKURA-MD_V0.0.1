@@ -6,8 +6,8 @@ let free = 150 // limite de descarga
 let prem = 300 //si su servidor tienes menos de 2GB baja el límite
 let handler = async (m, { conn, args, text, usedPrefix, command, isOwner, isPrems }) => {
 	
-   if (!args[0]) throw `✳️ Ingrese el link de mediafire junto al comando`
-    if (!args[0].match(/mediafire/gi)) throw `❎ Link incorrecto`
+   if (!args[0]) throw `⚡ Please Enter the  mediafire Link`
+    if (!args[0].match(/mediafire/gi)) throw `❎ Link Erorr..`
     m.react(rwait)
     
     let limit = isPrems || isOwner ? prem : free
@@ -18,12 +18,12 @@ let handler = async (m, { conn, args, text, usedPrefix, command, isOwner, isPrem
     let { url, url2, filename, ext, aploud, filesize, filesizeH } = res
     let isLimit = limit * 1024 < filesize
     let caption = `
-   ≡ *MEDIAFIRE*
-▢ *Nombre:* ${filename}
-▢ *Tamaño:* ${filesizeH}
-▢ *Extension:* ${ext}
-▢ *Subido:* ${aploud}
-${isLimit ? `\n▢ El archivo supera el límite de descarga *+${free} MB*\nPásate a premium para poder descargar archivos más de *${prem} MB*` : ''} 
+    ⦁⦁⦁●●❉❲ *MEDIAFIRE* ❳❉●●⦁⦁⦁
+❉●⦁ *📝File name:* ${filename}
+❉●⦁ *⚖️File Size:* ${filesizeH}
+❉●⦁ *⚡Inform:* ${ext}
+❉●⦁ *📩Upload:* ${aploud}
+${isLimit ? `\n❉●⦁ Download Limit *+${free} MB*\n❉●⦁Size  *${prem} MB*` : ''} 
 `.trim()
     await conn.sendFile(m.chat, ss, 'ssweb.png', caption, m)  
     if(!isLimit) await conn.sendFile(m.chat, url, filename, '', m, null, { mimetype: ext, asDocument: true })
@@ -36,19 +36,19 @@ ${isLimit ? `\n▢ El archivo supera el límite de descarga *+${free} MB*\nPása
      let { url, url2, filename, ext, upload_date, filesize, filesizeB } = res
     let isLimit = limit * 1024 < filesizeB
     let caption = `
-   ≡ *MEDIAFIRE*
-▢ *Nombre:* ${filename}
-▢ *Tamaño:* ${filesize}
-▢ *Extension:* ${ext}
-▢ *Subido:* ${upload_date}
-${isLimit ? `\n▢ El archivo supera el límite de descarga *+${free} MB*\nPásate a premium para poder descargar archivos más de *${prem} MB*` : ''} 
+   ⦁⦁⦁●●❉❲ *MEDIAFIRE* ❳❉●●⦁⦁⦁
+❉●⦁ *📝File name:* ${filename}
+❉●⦁ *⚖️File Size:* ${filesizeH}
+❉●⦁ *⚡Inform:* ${ext}
+❉●⦁ *📩Upload:* ${aploud}
+${isLimit ? `\n❉●⦁ Download Limit *+${free} MB*\n❉●⦁Size  *${prem} MB*` : ''} 
 `.trim()
 
 await conn.sendFile(m.chat, ss, 'ssweb.png', caption, m)
 if(!isLimit) await conn.sendFile(m.chat, url, filename, '', m, null, { mimetype: ext, asDocument: true })
     m.react(done)
 } catch {
-    m.reply(`Error: intenta con otro link`)
+    m.reply(`Error: link`)
 }
 
   }
