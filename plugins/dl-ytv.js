@@ -17,12 +17,13 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
 		
        if (size.split('MB')[0] >= limit) return m.reply(` ┏⚋⚋⚋❲ *YOUTUBE* ❳⚋⚋⚋⦁\n\n⦁ *⚖️FILESIZE* : ${size}\n⦁ *🎞️DURATION* : ${q}\n\n⦁ DOWNLOAD LIMIT *+${limit} MB*`)    
 	  conn.sendFile(m.chat, dl_url, title + '.mp4', `
-┏⚋⚋⚋❲ *YOUTUBE* ❳⚋⚋⚋⦁
-┗⚋⚋⚋⚋⚋⚋⦁  
+┏⦁⦁⦁●●❉❲ *YOUTUBE* ❳❉●●⦁⦁⦁
+┗❉●●●⦁⦁⦁⦁⦁⦁  
 ⦁ *📝TITLE* : ${title}
 ⦁ *🌿TYPEt* : mp4
 ⦁ *🎞️DURATION* : ${q}
 ⦁ *⚖️FILESIZE* : ${size}
+💃B҈Y҈ Q҈U҈E҈E҈N҈-S҈A҈K҈U҈R҈A҈.....
 `.trim(), m, false, { asVideo: chat.useVideo })
 		m.react(done) 
 		
@@ -33,7 +34,7 @@ let handler = async (m, { conn, args, isPrems, isOwner, usedPrefix, command }) =
 }
 handler.help = ['ytmp4 <link yt>']
 handler.tags = ['dl'] 
-handler.command = ['ytmp4', 'fgmp4']
+handler.command = ['ytmp4', 'dlmp4']
 handler.diamond = true
 
 export default handler
