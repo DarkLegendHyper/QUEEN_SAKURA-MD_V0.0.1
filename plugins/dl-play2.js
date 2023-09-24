@@ -2,7 +2,7 @@
 import yts from 'yt-search'
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 let limit = 320
-let handler = async (m, { conn, text, args, isPrems, isOwner, usedPrefix, command }) => {
+let handler = async (m, { conn, text, args, isPrems, usedPrefix, command }) => {
   
     if (!text) throw `👸 Enter a song title\n\n📌 Example *${usedPrefix + command}* *Baby Dont go Baby*`
   let chat = global.db.data.chats[m.chat]
