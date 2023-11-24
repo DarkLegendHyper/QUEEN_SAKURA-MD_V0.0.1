@@ -2,43 +2,22 @@
 import yts from 'yt-search'
 let handler = async (m, { conn, command, text, usedPrefix }) => {
 	
-	if (!text) throw `🔖 Enter a song title\n\n📌 Example *${usedPrefix + command}* *Dont go baby dont go*`
+	if (!text) throw `Please enter the name\n\nexample *${usedPrefix + command}* Lil Peep hate my life`
 	let res = await yts(text)
 	let vid = res.videos[0]
-	if (!vid) throw `💥 Vídeo/Audio no found`
+	if (!vid) throw `ENTER THE VIDEO NAME....`
 	let { title, description, thumbnail, videoId, timestamp, views, ago, url } = vid
 	//const url = 'https://www.youtube.com/watch?v=' + videoId
 	m.react('🎧')
-	let play = `
-┏─── 〔 Y O U T U B E 〕 ─⦁
-┌──────────────
-⦁ 📌 *Tile* : ${title}
-⦁ 📆 *Relise:* ${ago}
-⦁ ⌚ *duration:* ${timestamp}
-⦁ 👀 *views:* ${views}
-└──────────────⦁⦁`
- await conn.sendButton(m.chat,`┏─── 〔 Y O U T U B E 〕 ─⦁
-┌──────────────
-⦁ 📌 *Tile* : ${title}
-⦁ 📆 *Relise:* ${ago}
-⦁ ⌚ *duration:* ${timestamp}
-⦁ 👀 *views:* ${views}
-└──────────────⦁⦁`, author.trim(), await( await conn.getFile(thumbnail)).data, ['AUDIO', `${usedPrefix}getvid ${url} 360`], false, { quoted: m, 'audio': { 'url':'https://wa.me/+94770378874' },
-'mimetype': global.dpdf,
-'fileName': `YouTube Play`,
-'fileLength': 666666666666666,
-'pageCount': 666,contextInfo: { externalAdReply: { showAdAttribution: true,
-mediaType:  2,
-mediaUrl: `${url}`,
-title: `AUDIO SENDING...`,
-body: wm,
-sourceUrl: 'http://wa.me/+94770378874', thumbnail: await ( await conn.getFile(thumbnail)).data
-  }
- } 
-})
-handler.help = ['Song']
+	let play = `_*DOWNLOADING ${title} |UPLOADED ON ${ago} | DURATION ${timestamp}*_`
+ await conn.sendButton(m.chat, play, fgig, thumbnail, [
+    ['🎶 MP3', `${usedPrefix}fgmp3 ${url}`],
+    ['🎥 MP4', `${usedPrefix}fgmp4 ${url}`]
+  ], m, rpl)
+}
+handler.help = ['play']
 handler.tags = ['dl']
-handler.command = ['play', 'Song']
+handler.command = ['play', 'playvid']
 handler.disabled = true
 
 export default handler
