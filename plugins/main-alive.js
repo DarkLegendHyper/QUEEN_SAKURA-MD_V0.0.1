@@ -2,7 +2,7 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
 
     // Sound
     let name = m.pushName || conn.getName(m.sender)
-    var vn = "https://raw.githubusercontent.com/blacksyberzizuko/Suneth/tree/main/Assets/audio/Sad.mp3"
+    var vn = "https://raw.githubusercontent.com/Kai0071/A17/tree/master/Assets/audio/🔥.mp3"
     let url = "https://github.com/DarkLegendHyper/QUEEN_SAKURA-MD_V0.0.1"
     let murl = "https://youtu.be/DibiLc17dh0?si=xp9bQ-_frEyDB1-i"
     let img = "https://telegra.ph/file/9a27a2924f69573027692.jpg"
