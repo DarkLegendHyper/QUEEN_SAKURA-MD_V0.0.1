@@ -12,7 +12,7 @@ export async function before(m,{conn }) {
     global.rpyp = { contextInfo: { externalAdReply: { mediaUrl: fgpyp, mediaType: 'VIDEO', description: 'Donate', title: 'PayPal', body: 'ayuda a mantener el bot activo', thumbnailUrl: pp, sourceUrl: fgpyp }}}
     
     //reply Instagram 
-    global.rpig = { contextInfo: { externalAdReply: { mediaUrl: fgig, mediaType: 'VIDEO', description: 'QUEEN-SAKURA-MD', title: 'DARK-LEGEND_HYPER', body: 'YOUTUBE', thumbnailUrl: pp, sourceUrl: fgig }}} 
+    global.rpig = { contextInfo: { externalAdReply: { mediaUrl: fgig, mediaType: 'VIDEO', description: 'QUEEN-SAKURA-MD', title: '☆: .｡.YOUTUBE-DOWNLOADE .｡.:☆', body: 'https://chat.whatsapp.com/FYPYqeucaxr4qwME8G6Tot', thumbnailUrl: pp, sourceUrl: fgig }}} 
 	
 	//reply link yt
     global.rpyt = { contextInfo: { externalAdReply: { showAdAttribution: true, mediaUrl: fgyt, mediaType: 'VIDEO', description: 'Suscribete : ' + fgyt, title: 'FG YouTube', body: 'aprende a crear tus propios bots', thumbnailUrl: pp, sourceUrl: fgyt }}}
