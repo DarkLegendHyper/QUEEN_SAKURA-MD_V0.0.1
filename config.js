@@ -34,7 +34,7 @@ global.fgyt = 'https://youtube.com'
 global.fgpyp = 'https://paypal.me'
 global.fglog = 'https://i.imgur.com/PhUGotC.jpg' 
 
-global.wait = '*⌛ _loading..._*\n*▰▰▰▱▱▱▱▱*'
+global.wait = '*⌛ _loading..._*'
 global.rwait = '🎀'
 global.dmoji = '🤭'
 global.done = '✅'
